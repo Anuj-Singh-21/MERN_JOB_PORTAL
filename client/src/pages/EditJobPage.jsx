@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 const EditJobPage = ({ updateJobSubmit }) => {
   const job = useLoaderData();
   const { id } = useParams();
+  console.log(job);
 
   const [title, setTitle] = useState(job.title);
   const [type, setType] = useState(job.type);
@@ -15,8 +16,8 @@ const EditJobPage = ({ updateJobSubmit }) => {
   const [companyDescription, setCompanyDescription] = useState(
     job.company.description
   );
-  const [contactEmail, setContactEmail] = useState(job.company.contactEmail);
-  const [contactPhone, setContactPhone] = useState(job.company.contactPhone);
+  const [contactEmail, setContactEmail] = useState(job.company.email);
+  const [contactPhone, setContactPhone] = useState(job.company.phone);
 
   const navigate = useNavigate();
   const submitForm = (e) => {
@@ -32,8 +33,8 @@ const EditJobPage = ({ updateJobSubmit }) => {
       company: {
         name: companyName,
         description: companyDescription,
-        contactEmail,
-        contactPhone,
+        email: contactEmail,
+        phone: contactPhone,
       },
     };
 

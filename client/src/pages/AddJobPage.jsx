@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 const AddJobPage = ({ addJobSubmit }) => {
   const [title, setTitle] = useState("");
-  const [type, setType] = useState("Full-Time");
+  const [jobType, setJobType] = useState("Full-Time");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const [salary, setSalary] = useState("Under $50K");
@@ -19,15 +19,15 @@ const AddJobPage = ({ addJobSubmit }) => {
 
     const newJob = {
       title,
-      type,
+      jobType,
       location,
       description,
       salary,
       company: {
         name: companyName,
         description: companyDescription,
-        contactEmail,
-        contactPhone,
+        email: contactEmail,
+        phone: contactPhone,
       },
     };
 
@@ -59,8 +59,8 @@ const AddJobPage = ({ addJobSubmit }) => {
                   name="type"
                   id="type"
                   className="border rounded w-full py-2 px-3"
-                  value={type}
-                  onChange={(e) => setType(e.target.value)}
+                  value={jobType}
+                  onChange={(e) => setJobType(e.target.value)}
                 >
                   <option value="Full-Time">Full Time</option>
                   <option value="Part-Time">Part Time</option>

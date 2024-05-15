@@ -3,17 +3,20 @@ import jobs from "../jobs.json";
 import JobsPage from "./../pages/JobsPage";
 import JobListing from "./JobListing";
 import Spinner from "./Spinner";
+import axios from "axios";
 
 const JobListings = ({ isHome = false }) => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const apiUrl = isHome ? "/api/jobs?_limit=3" : "/api/jobs";
+    const apiUrl = isHome ? "/api/jobs" : "/api/jobs";
     try {
       const fetchJobs = async () => {
-        const res = await fetch(apiUrl);
-        const data = await res.json();
+        const res = await axios.get(apiUrl);
+        console.log(res);
+        const data = await res.data.jobs;
+
         setJobs(data);
       };
       fetchJobs();
@@ -37,7 +40,7 @@ const JobListings = ({ isHome = false }) => {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {jobs.map((job) => (
-            <JobListing key={job.id} job={job} />
+            <JobListing key={job._id} job={job} />
           ))}
         </div>
       )}

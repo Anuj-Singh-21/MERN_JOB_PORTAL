@@ -12,35 +12,21 @@ import AddJobPage from "./pages/AddJobPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import JobPage, { jobLoader } from "./pages/JobPage";
 import EditJobPage from "./pages/EditJobPage";
+import axios from "axios";
 
 function App() {
   const addJob = async (newJob) => {
-    const res = await fetch("/api/jobs", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newJob),
-    });
-    return;
+    console.log(newJob);
+    const res = await axios.post("/api/jobs/", newJob);
   };
 
   const updateJob = async (job) => {
-    const res = await fetch(`/api/jobs/${job.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(job),
-    });
-    return;
+    console.log("function", job);
+    const res = await axios.put(`/api/jobs/${job.id}`, job);
   };
 
   const deleteJob = async (id) => {
-    const res = await fetch(`/api/jobs/${id}`, {
-      method: "DELETE",
-    });
-    return;
+    const res = await axios.delete(`/api/jobs/${id}`);
   };
 
   const router = createBrowserRouter(
